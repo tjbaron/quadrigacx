@@ -12,7 +12,7 @@ module.exports = class Quadrigacx
 		@version = 'v2'
 		@client_id = client_id
 		@key = key
-		@secret_hash = crypto.createHash('md5').update(secret).digest('hex')
+		@secret_hash = secret
 		@nonce = Math.ceil((new Date()).getTime() / 1000)
 
 	_nonce: () ->
@@ -89,7 +89,7 @@ module.exports = class Quadrigacx
 		methods = 
 			public: ['ticker', 'order_book', 'transactions']
 			private: ['balance', 'user_transactions', 'open_orders', 'lookup_order',
-					 'cancel_order', 'buy', 'sell', 'bitcoin_deposit_address', 'bitcoin_withdrawal']
+					'cancel_order', 'buy', 'sell', 'bitcoin_deposit_address', 'bitcoin_withdrawal']
 
 		if methods['public'].indexOf(method) isnt -1 
 			return @public_request(method, params, cb)
